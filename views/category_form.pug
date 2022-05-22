@@ -1,0 +1,13 @@
+extends layout 
+block content 
+    h2= title 
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='name') Name: 
+            input#name.form-control(type='text' placeholder='Category name' name='name' required='true' value=(undefined===item ? '' : category.name))
+        div.form-group
+            label(for='description') Description:
+            input#description.form-control(type='text' placeholder='Category description' name='description' required='true' value=(undefined===item ? '' : category.description))
+        button.btn.btn-primary(type='submit') Submit
+

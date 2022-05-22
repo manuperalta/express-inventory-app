@@ -1,0 +1,17 @@
+extends layout 
+
+block content 
+    h1= title 
+    p Are you sure you wish to delete this item?
+    p #[strong #{item.name}]
+    p Quantity: #{item.quant_in_stock} units
+    p Price: $#{item.price}
+    p Categories:
+    if category
+        ul
+            each category in item.category
+                li
+                    a(href=category.url) #{category.name}
+    form(method='POST' action='')
+        input#itemid.form-control(type='hidden' name='itemid' required='true', value=item.id)
+        button.btn.btn-danger(type='submit') Delete

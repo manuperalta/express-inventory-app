@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 #{provider.name}
+    h2 CUIT: #{provider.CUIT}
+    if (items.length > 0)
+        p Items sold by this provider:
+        each item in items
+            a(href=item.url) #{item.name}
+            br
+    else
+        p.text-danger There are no items sold by this provider.
+    a(href=provider.url + '/update')
+        button.btn.btn-primary Update Provider
+    a(href=provider.url + '/delete')
+        button.btn.btn-danger Delete Provider

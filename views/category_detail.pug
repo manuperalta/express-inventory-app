@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    h1 #{category.name}
+    if (items.length > 0)
+        p Items in this category:
+        each item in items
+            a(href=item.url) #{item.name}
+            p= item.isInStock ? "(Available)" : "(Unavailable)"
+            br
+    else 
+        p.text-danger There are no items in this category.
+    a(href=category.url + '/update')
+        button.btn.btn-primary Update Category
+    a(href=category.url + '/delete')
+        button.btn.btn-danger Delete Category

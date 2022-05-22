@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    img(src = '/images/'+img_filename)
+    h1 #{item.name} #{item.isInStock ? '(Available)' : '(Unavailable)'}
+    h3 Quantity: #{item.quant_in_stock} units
+    h3 Price: $#{item.price}
+    p #{item.description}
+    hr
+    p Categories: 
+    each category in item.category
+        a(href=category.url) #{category.name}
+        br
+    hr
+    p Upload item image:
+    form(method='POST' action='/catalog/items/'+item._id+'/upload' enctype='multipart/form-data')
+        input(type='file' name='item_image')
+        input.btn.btn-primary(type='submit' name='submit' value='Upload')
+    hr
+    a(href=item.url+'/update')
+        button.btn.btn-primary Edit item
+    a(href=item.url+'/delete')
+        button.btn.btn-danger Delete item

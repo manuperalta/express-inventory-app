@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #[strong #{title}]
+  h1 Dynamic content
+
+  if error
+    p Error getting dynamic content.
+  else
+    p The inventory has the following record counts:
+
+    ul
+      li #[strong Items:] !{data.item_count}
+      li #[strong Items available:] !{data.item_inStock_count}
+      li #[strong Providers:] !{data.provider_count}
+      li #[strong Categories:] !{data.category_count}
+

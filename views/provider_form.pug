@@ -1,0 +1,13 @@
+extends layout 
+block content 
+    h2= title 
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='name') Name: 
+            input#name.form-control(type='text' placeholder='Provider name' name='name' required='true' value=(undefined===provider ? '' : provider.name))
+        div.form-group
+            label(for='cuit') CUIT: 
+            input#cuit.form-control(type='text' placeholder='Provider CUIT' name='cuit' maxlength='11' required='true' value=(undefined===provider ? '' : provider.CUIT))
+        button.btn.btn-primary(type='submit') Submit
+

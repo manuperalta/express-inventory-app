@@ -1,0 +1,47 @@
+extends layout 
+
+block content 
+    h2= title 
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='name') Name: 
+            input#name.form-control(type='text' placeholder='Item name' name='name' required='true' value=(undefined===item ? '' : item.name))
+        div.form-group
+            label(for='price') Price: 
+            input#price.form-control(type='text' placeholder='Item price' name='price' required='true' value=(undefined===item ? '' : item.price))
+        div.form-group
+            label(for='quant_in_stock') Quantity in Stock:
+            input#quant_in_stock.form-control(type='number' name='quant_in_stock' min='0' max='99' required='true' value=(undefined===item ? 0 : item.quant_in_stock))
+        div.form-group
+            label Categories:
+            div
+                for category in categories
+                    div(style='display: inline; padding-right:10px;')
+                        input.checkbox-input(type='checkbox' name='category', id=category._id, value=category._id, checked=category.checked )
+                        label(for=category._id) #{' '+category.name}
+        div.form-group
+            label(for='provider') Provider:
+            select#provider.form-control(type='select' placeholder='Select provider' name='provider' required='true')
+                - providers.sort(function(a,b) {let textA=a.name.toUpperCase(); let textB = b.name.toUpperCase(); return (textA<textB)}) ? -1 : (textA>textB)
+                for provider in providers 
+                    if item 
+                        //- Handle GET form, where item.provider is an object, and POST form, where it is a string.
+                        option(
+                            value=provider._id 
+                            selected=(
+                            provider._id.toString()==item.provider._id
+                            || provider._id.toString()==item.provider
+                            ) ? 'selected' : false
+                        ) #{provider.name}
+                    else
+                        option(value=provider._id) #{provider.name}
+        div.form-group
+            label(for='description') Description:
+            textarea#description.form-control(type='textarea' placeholder='description' name='description' required='true') #{undefined===item ? '' : item.description}
+        button.btn.btn-primary(type='submit') Submit
+    hr
+    if errors
+        ul.text-danger
+            for error in errors
+                li!= error.msg

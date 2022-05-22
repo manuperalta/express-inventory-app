@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+    p #{provider.name}
+    if items
+        p Please delete the following items before continuing:
+        ul
+            each item in items
+                li
+                    a(href=item.url) #{item.name}
+    else
+        p Are you sure you wish to delete this provider?
+        form(method='POST' action='')
+            input#providerid.form-control(type='hidden' name='providerid' required='true', value=provider.id)
+            button.btn.btn-danger(type='submit') Delete
