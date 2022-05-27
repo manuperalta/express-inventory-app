@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    img(src = '/images/'+img_filename)
+    img(src = '/images/'+img_filename class = 'description-img')
     h1 #{item.name} #{item.isInStock ? '(Available)' : '(Unavailable)'}
     h3 Quantity: #{item.quant_in_stock} units
     h3 Price: $#{item.price}

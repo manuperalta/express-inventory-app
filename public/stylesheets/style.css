@@ -6,6 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
-button{
-  margin-right:3px;
+
+button {
+  margin-right: 3px;
+}
+
+.description-img {
+  float: left;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.list-img {
+  float: left;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.item-wrapper {
+  height: 110px;
 }

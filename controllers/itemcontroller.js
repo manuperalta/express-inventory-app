@@ -53,9 +53,14 @@ exports.index = function (req, res) {
 exports.item_list = (req, res, next) => {
     Item.find()
         .populate('provider').populate('category')
-        .sort({ 'book.title': 1 })
+        .sort({ 'name': 1 })
         .exec((err, list_items) => {
             if (err) { return next(err); }
+            let files = fs.readdirSync(path.join(__dirname, '..', '/public', '/images'));
+            let idString = list_items[0]._id.toString()
+            let jsonedList = []
+            list_items.forEach(item => jsonedList.push(item.toJSON()))
+            console.log(jsonedList)
             //Successful, so render
             res.render('item_list', { title: 'Item List', item_list: list_items })
         })

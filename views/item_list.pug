@@ -4,7 +4,9 @@ block content
     h1= title
     hr
     each item in item_list
-        a(href=item.url) #{item.name}
-        |  ($#{item.price})
+        div(class='item-wrapper')
+            img(src='' class='list-img')
+            a(href=item.url) #{item.name}
+            |  ($#{item.price})
         hr
     a(href='/catalog/items/create') Create new Item    
