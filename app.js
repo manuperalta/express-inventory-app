@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-
+//Include environment variables
+require('dotenv').config()
+console.log(process.env) // remove this after you've confirmed it working
 //Setting up file upload
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
@@ -22,7 +24,6 @@ const catalogRouter = require('./routes/catalog')
 
 //Connecting to Database
 var mongoose = require('mongoose');
-var dev_db_url = 'mongodb+srv://inventoryadmin:hLL2cVwqxztPHXU@inventorydatabase.4rjsk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewURLParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
