@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 //Include environment variables
 require('dotenv').config()
-console.log(process.env) // remove this after you've confirmed it working
 //Setting up file upload
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
