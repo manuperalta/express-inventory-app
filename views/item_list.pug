@@ -5,7 +5,7 @@ block content
     hr
     each item in item_list
         div(class='item-wrapper')
-            img(src='' class='list-img')
+            img(src='/images/'+item.imgName class='list-img')
             a(href=item.url) #{item.name}
             |  ($#{item.price})
         hr

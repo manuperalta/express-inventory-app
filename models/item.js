@@ -30,24 +30,13 @@ ItemSchema
         return txt.documentElement.textContent;
     })
 ItemSchema
-    .virtual('extension').get(function () {
-        let ext = '';
-        fs.readdir(path.join(__dirname,'..','public','images'), (err, files) => {
-            console.log(files)
-            if (err) { console.log(err) }
-            else {
-                const ItemIDRegex = new RegExp(this._id);
-                console.log(ItemIDRegex)
-                files.forEach(file => {
-                    console.log(file)
-                    console.log(ItemIDRegex.test(file))
-                    if (ItemIDRegex.test(file)){ ext = path.extname(file) }
-                })
-                console.log(ext)
-            }
-            console.log(ext);
+    .virtual('imgName').get(function () {
+        let image = '';
+        let item = this;
+        files = fs.readdirSync(path.join(__dirname, '..', 'public', 'images'));
+        files.forEach(file => {
+            if (file.includes(item._id.toString())) return image = file;
         })
-        console.log(ext)
-        return ext;
+        return image;
     })
 module.exports = mongoose.model('Item', ItemSchema)
